@@ -1,0 +1,11 @@
+#resume-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 88vh;
+}
+
+#resume {
+    width: 100%;
+    height: 100%;
+}

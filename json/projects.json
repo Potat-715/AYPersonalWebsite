@@ -1,0 +1,23 @@
+{
+    "projects": [
+        {
+            "name": "HICSS-56 Bayesian Networks",
+            "slug": "hicss-56",
+            "image": "/images/projects/hicss.png",
+            "description": "<p>During my internship at Sandia National Labs, I first-authored a research paper under the supervision of Matthew Hoffman and Nathanael Brown within the Mathematical Analysis and Decision Science organization. This paper discusses novel methods in feature selection, random forest MDI discretization, and structural learning for Bayesian network (BN) training and development in the context of cybersecurity attack detection. My research was then published and presented at the 2023 Hawaii International Conference on System Sciences. The abstract and link to download the publication can be found <a href='https://hdl.handle.net/10125/102784' target='_blank'>here</a>.</p><p>As part of the research, I constructed a Scikit-learn compatible Java to Python extension library that streamlined BN and dynamic BN training and testing pipelines, with applications and use across multiple labs at Sandia.</p>",
+            "link": "https://hdl.handle.net/10125/102784",
+            "client_name":"",
+            "client_company":"",
+            "client_feedback":"",
+            "schema":"project",
+            "dateString":"Tuesday, January 3, 2023",
+            "timestamp":{},
+            "_id":"AkiYIyXkTSMvCthe",
+            "category":"Machine Learning",
+            "opts":null,
+            "preview":"",
+            "client":"",
+            "dateRange":"2023"
+        }
+    ]
+}

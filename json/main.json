@@ -1,0 +1,19 @@
+{
+    "hero": {
+        "hero_img": "url(/images/barnett.jpg)",
+        "hero_title": "Andy Yang",
+        "hero_subtitle": "Electrical Engineering | Photography"
+    },
+
+    "projects_intro": {
+        "header": "My Projects",
+        "subheader": "Take a look at my most recent work"
+    },
+
+    "gallery": {
+        "img_1": "",
+        "img_2": "",
+        "img_3": "",
+        "img_4": ""
+    }
+}

@@ -1,0 +1,57 @@
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+.collapsible {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+	padding: 10px;
+	padding-left: 20px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    font-weight: 250;
+}
+  
+.active, .collapsible:hover {
+    background-color: white;
+}
+  
+.content {
+	padding: 0 18px;
+	padding-left: 38px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: white;
+}
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }

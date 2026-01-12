@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Andy Yang - Resume</title>
+    <meta name="description" content="Andy Yang's Personal Portfolio" />
+
+    <%- include('partials/head.ejs') %>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/resume.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container-fluid">
+        <div class="row" style="margin-bottom: 50px">
+            <div class="col">
+                <div id="resume-wrapper">
+                    <object data="/files/resume.pdf" id="resume"></object>
+                </div>
+            </div class="col">
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/scripts.ejs') %>
+</body>
+
+</html>

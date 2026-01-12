@@ -1,0 +1,29 @@
+{
+  "name": "andyyang",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "author": "Andy Yang",
+  "license": "MIT",
+  "dependencies": {
+    "aos": "^2.3.4",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "merge-json": "0.1.0-b.3",
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

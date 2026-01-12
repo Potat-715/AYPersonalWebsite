@@ -1,0 +1,31 @@
+{
+    "site_name": "Andy Yang",
+    "img_logo_nav": "/images/logo.png",
+    "header_nav": [
+        {
+            "text": "Projects",
+            "link": "/#project_section"
+        },
+        {
+            "text": "Resume",
+            "link": "/resume"
+        },
+        {
+            "text": "Photos",
+            "link": "/#photos"
+        },
+        {
+            "text": "Contact",
+            "link": "/#contact"
+        }
+    ],
+    "social": {
+        "linkedin": {
+            "link": "https://www.linkedin.com/in/andy-yang-7513412b1/"
+        },
+        "instagram": {
+            "link": "https://www.instagram.com/adnyaynghpotos/"
+        },
+        "email": "andyzuleyang@gmail.com"
+    }
+}
