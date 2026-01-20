@@ -1,0 +1,23 @@
+/* Ensure modal image never overflows the viewport; leave comfortable margins */
+#photoModalImg {
+	display: block;
+	margin: 0 auto;
+	max-width: calc(100vw - 48px);
+	max-height: calc(100vh - 120px);
+	object-fit: contain;
+}
+
+/* Make modal dialog responsive so image can use available space */
+.modal-dialog.modal-lg {
+	max-width: 95vw;
+	margin: 1.5rem auto;
+}
+
+/* If you want tighter margins on small screens */
+@media (max-width: 576px) {
+	#photoModalImg {
+		max-width: calc(100vw - 24px);
+		max-height: calc(100vh - 96px);
+	}
+}
+
