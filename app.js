@@ -20,12 +20,29 @@ const modelMap = {
 
 const photoSections = [
     { key: 'personal-work', label: 'Personal Work', folder: 'Personal Work' },
-    { key: 'illini-swim-club', label: 'Illini Swim Club', folder: 'illini-swim-club' },
+    {
+        key: 'illini-swim-club',
+        label: 'Illini Swim Club',
+        folder: 'illini-swim-club',
+        meets: [
+            { key: 'mizzou-show-your-strips-2026', label: 'Mizzou Show Your Strips 2026', folder: 'Mizzou Show Your Strips 2026' }
+        ]
+    },
     { key: 'illini-solar-car', label: 'Illini Solar Car', folder: 'illini-solar-car' }
 ];
 
-function getPhotoSection(sectionKey) {
-    return photoSections.find((section) => section.key === sectionKey) || photoSections[0];
+function getPhotoSection(sectionKey, meetKey) {
+    const section = photoSections.find((item) => item.key === sectionKey) || photoSections[0];
+    const meet = section.meets?.find((item) => item.key === meetKey);
+    return meet ? {
+        ...section,
+        ...meet,
+        key: section.key,
+        folder: path.join(section.folder, meet.folder),
+        meetKey: meet.key,
+        parentKey: section.key,
+        parentLabel: section.label
+    } : section;
 }
 
 function getSectionPhotos(photoDir, section) {
@@ -53,7 +70,9 @@ function getSectionPhotos(photoDir, section) {
             } catch (e) {
                 // ignore EXIF errors
             }
-            const relativeDir = section.folder ? `/images/photos/${encodeURIComponent(section.folder)}` : '/images/photos';
+            const relativeDir = section.folder
+                ? `/images/photos/${section.folder.split(path.sep).map(encodeURIComponent).join('/')}`
+                : '/images/photos';
             return { src: `${relativeDir}/${encodeURIComponent(fileName)}`, settings };
         });
     } catch (err) {
@@ -98,12 +117,12 @@ app.get('/resume', (req, res) => {
     res.render('resume', data);
 });
 
-app.get(["/photos", "/photos/:section"], (req, res) => {
+app.get(["/photos", "/photos/:section", "/photos/:section/:meet"], (req, res) => {
     let maindata = JSON.parse(fs.readFileSync("json/main.json"));
     let globaldata = JSON.parse(fs.readFileSync("json/global.json"));
 
     const photoDir = path.join(__dirname, 'public', 'images', 'photos');
-    const selectedSection = getPhotoSection(req.params.section || 'personal-work');
+    const selectedSection = getPhotoSection(req.params.section || 'personal-work', req.params.meet);
     const sectionPhotos = getSectionPhotos(photoDir, selectedSection);
 
     function shuffleArray(array) {
@@ -115,6 +134,7 @@ app.get(["/photos", "/photos/:section"], (req, res) => {
     shuffleArray(sectionPhotos);
 
     let data = mergeJSON.merge(maindata, globaldata);
+    data.staticSite = false;
     data.photoSections = [{ ...selectedSection, photos: sectionPhotos }];
     data.currentSection = selectedSection;
 

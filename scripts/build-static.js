@@ -30,6 +30,7 @@ function pageData() {
     const projects = prepareData(readJson('projects.json'));
     const global = prepareData(readJson('global.json'));
     const data = { ...global, ...main, ...projects };
+    data.staticSite = true;
     data.header_nav = data.header_nav.map((item) => ({
         ...item,
         link: item.link
@@ -47,7 +48,14 @@ function getPhotosBySection() {
     const photoDir = path.join(projectRoot, 'public', 'images', 'photos');
     const sections = [
         { key: 'personal-work', label: 'Personal Work', folder: 'Personal Work' },
-        { key: 'illini-swim-club', label: 'Illini Swim Club', folder: 'illini-swim-club' },
+        {
+            key: 'illini-swim-club',
+            label: 'Illini Swim Club',
+            folder: 'illini-swim-club',
+            meets: [
+                { key: 'mizzou-show-your-strips-2026', label: 'Mizzou Show Your Strips 2026', folder: 'Mizzou Show Your Strips 2026' }
+            ]
+        },
         { key: 'illini-solar-car', label: 'Illini Solar Car', folder: 'illini-solar-car' }
     ];
 
@@ -70,7 +78,9 @@ function getPhotosBySection() {
                     } catch (error) {
                         // Some image formats do not contain readable EXIF data.
                     }
-                    const relativeDir = section.folder ? `/images/photos/${encodeURIComponent(section.folder)}` : '/images/photos';
+                    const relativeDir = section.folder
+                        ? `/images/photos/${section.folder.split(path.sep).map(encodeURIComponent).join('/')}`
+                        : '/images/photos';
                     return { src: `${relativeDir}/${encodeURIComponent(file)}`, settings };
                 });
         } catch (error) {
@@ -78,7 +88,19 @@ function getPhotosBySection() {
         }
     };
 
-    return sections.map((section) => ({ ...section, photos: readSectionPhotos(section) }));
+    return sections.flatMap((section) => [
+        { ...section, photos: readSectionPhotos(section) },
+        ...(section.meets || []).map((meet) => ({
+            ...section,
+            ...meet,
+            key: section.key,
+            folder: path.join(section.folder, meet.folder),
+            meetKey: meet.key,
+            parentKey: section.key,
+            parentLabel: section.label,
+            photos: readSectionPhotos({ ...section, ...meet, folder: path.join(section.folder, meet.folder) })
+        }))
+    ]);
 }
 
 function render(view, data) {
@@ -96,7 +118,14 @@ fs.writeFileSync(path.join(outputRoot, '.nojekyll'), '');
 const data = pageData();
 const photoSections = [
     { key: 'personal-work', label: 'Personal Work', folder: 'Personal Work' },
-    { key: 'illini-swim-club', label: 'Illini Swim Club', folder: 'illini-swim-club' },
+    {
+        key: 'illini-swim-club',
+        label: 'Illini Swim Club',
+        folder: 'illini-swim-club',
+        meets: [
+            { key: 'mizzou-show-your-strips-2026', label: 'Mizzou Show Your Strips 2026', folder: 'Mizzou Show Your Strips 2026' }
+        ]
+    },
     { key: 'illini-solar-car', label: 'Illini Solar Car', folder: 'illini-solar-car' }
 ];
 
@@ -110,6 +139,14 @@ photoSections.forEach((section) => {
         ...data,
         photoSections: [{ ...section, photos: sectionPhotos }]
     }));
+
+    (section.meets || []).forEach((meet) => {
+        const meetData = getPhotosBySection().find((item) => item.meetKey === meet.key);
+        fs.writeFileSync(path.join(outputRoot, `photos-${section.key}-${meet.key}.html`), render('photos', {
+            ...data,
+            photoSections: [{ ...meetData, photos: meetData?.photos || [] }]
+        }));
+    });
 });
 
 for (const project of data.projects) {
