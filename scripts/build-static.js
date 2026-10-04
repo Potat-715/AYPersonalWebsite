@@ -32,31 +32,53 @@ function pageData() {
     const data = { ...global, ...main, ...projects };
     data.header_nav = data.header_nav.map((item) => ({
         ...item,
-        link: item.link.replace('/resume', 'resume.html').replace('/photos', 'photos.html').replace('/#', 'index.html#')
+        link: item.link
+            .replace('/resume', 'resume.html')
+            .replace('/photos/personal-work', 'photos-personal-work.html')
+            .replace('/photos/illini-swim-club', 'photos-illini-swim-club.html')
+            .replace('/photos/illini-solar-car', 'photos-illini-solar-car.html')
+            .replace('/photos', 'photos.html')
+            .replace('/#', 'index.html#')
     }));
     return data;
 }
 
-function getPhotos() {
+function getPhotosBySection() {
     const photoDir = path.join(projectRoot, 'public', 'images', 'photos');
-    return fs.readdirSync(photoDir)
-        .filter((file) => /\.(jpe?g|png|gif|webp|svg)$/i.test(file))
-        .map((file) => {
-            let settings = '';
-            try {
-                const result = exifParser.create(fs.readFileSync(path.join(photoDir, file))).parse();
-                const tags = result.tags || {};
-                const model = modelMap[tags.Model] || tags.Model || '';
-                const shutter = tags.ExposureTime ? `Shutter Speed: 1/${Math.round(1 / tags.ExposureTime)}s` : '';
-                const aperture = tags.FNumber ? `Aperture: f/${tags.FNumber}` : '';
-                const iso = tags.ISO ? `ISO: ${tags.ISO}` : '';
-                const focalLength = tags.FocalLength ? `Focal Length: ${tags.FocalLength}mm` : '';
-                settings = [model && `Model: ${model}`, shutter, aperture, iso, focalLength].filter(Boolean).join(' | ');
-            } catch (error) {
-                // Some image formats do not contain readable EXIF data.
-            }
-            return { src: `images/photos/${file}`, settings };
-        });
+    const sections = [
+        { key: 'personal-work', label: 'Personal Work', folder: 'Personal Work' },
+        { key: 'illini-swim-club', label: 'Illini Swim Club', folder: 'illini-swim-club' },
+        { key: 'illini-solar-car', label: 'Illini Solar Car', folder: 'illini-solar-car' }
+    ];
+
+    const readSectionPhotos = (section) => {
+        const sectionDir = section.folder ? path.join(photoDir, section.folder) : photoDir;
+        try {
+            return fs.readdirSync(sectionDir)
+                .filter((file) => /\.(jpe?g|png|gif|webp|svg)$/i.test(file))
+                .map((file) => {
+                    let settings = '';
+                    try {
+                        const result = exifParser.create(fs.readFileSync(path.join(sectionDir, file))).parse();
+                        const tags = result.tags || {};
+                        const model = modelMap[tags.Model] || tags.Model || '';
+                        const shutter = tags.ExposureTime ? `Shutter Speed: 1/${Math.round(1 / tags.ExposureTime)}s` : '';
+                        const aperture = tags.FNumber ? `Aperture: f/${tags.FNumber}` : '';
+                        const iso = tags.ISO ? `ISO: ${tags.ISO}` : '';
+                        const focalLength = tags.FocalLength ? `Focal Length: ${tags.FocalLength}mm` : '';
+                        settings = [model && `Model: ${model}`, shutter, aperture, iso, focalLength].filter(Boolean).join(' | ');
+                    } catch (error) {
+                        // Some image formats do not contain readable EXIF data.
+                    }
+                    const relativeDir = section.folder ? `/images/photos/${encodeURIComponent(section.folder)}` : '/images/photos';
+                    return { src: `${relativeDir}/${encodeURIComponent(file)}`, settings };
+                });
+        } catch (error) {
+            return [];
+        }
+    };
+
+    return sections.map((section) => ({ ...section, photos: readSectionPhotos(section) }));
 }
 
 function render(view, data) {
@@ -72,9 +94,23 @@ fs.cpSync(path.join(projectRoot, 'public'), outputRoot, { recursive: true });
 fs.writeFileSync(path.join(outputRoot, '.nojekyll'), '');
 
 const data = pageData();
+const photoSections = [
+    { key: 'personal-work', label: 'Personal Work', folder: 'Personal Work' },
+    { key: 'illini-swim-club', label: 'Illini Swim Club', folder: 'illini-swim-club' },
+    { key: 'illini-solar-car', label: 'Illini Solar Car', folder: 'illini-solar-car' }
+];
+
 fs.writeFileSync(path.join(outputRoot, 'index.html'), render('main', data));
 fs.writeFileSync(path.join(outputRoot, 'resume.html'), render('resume', data));
-fs.writeFileSync(path.join(outputRoot, 'photos.html'), render('photos', { ...data, photos: getPhotos() }));
+
+photoSections.forEach((section) => {
+    const sectionPhotos = getPhotosBySection().find((item) => item.key === section.key)?.photos || [];
+    const outputName = section.key === 'personal-work' ? 'photos.html' : `photos-${section.key}.html`;
+    fs.writeFileSync(path.join(outputRoot, outputName), render('photos', {
+        ...data,
+        photoSections: [{ ...section, photos: sectionPhotos }]
+    }));
+});
 
 for (const project of data.projects) {
     fs.writeFileSync(path.join(outputRoot, `${project.slug}.html`), render('project', { ...data, ...project }));

@@ -18,6 +18,44 @@
             "preview":"",
             "client":"",
             "dateRange":"2023"
+        },
+        {
+            "name": "Bayesian Networks for Cybersecurity Attack Detection",
+            "slug": "cybersecurity-report",
+            "image": "/images/logo.png",
+            "description": "<p>This report presents a research-focused project on Bayesian network methods for cybersecurity attack detection. It outlines the development of feature selection, random forest MDI discretization, and structural learning techniques used to improve model interpretability and performance in a security context.</p><p>I implemented a Scikit-learn compatible Java-to-Python extension library to streamline Bayesian network and dynamic Bayesian network training and testing workflows, making the methodology easier to apply across multiple research and analysis pipelines.</p><p><a href='/files/resume.pdf' target='_blank' rel='noopener noreferrer'>Read the full report (PDF)</a></p>",
+            "link": "/files/resume.pdf",
+            "client_name":"",
+            "client_company":"",
+            "client_feedback":"",
+            "schema":"project",
+            "dateString":"2023",
+            "timestamp":{},
+            "_id":"report-bayesian-networks",
+            "category":"Research",
+            "opts":null,
+            "preview":"",
+            "client":"",
+            "dateRange":"2023"
+        },
+        {
+            "name": "Applause Meter",
+            "slug": "applause-meter",
+            "image": "/images/logo.png",
+            "description": "<p>The Applause Meter is a real-time audio monitoring project designed to detect and quantify audience enthusiasm. It uses signal processing and threshold-based analysis to interpret clapping patterns and convert them into a measurable response metric.</p><p>This project focused on practical electronics and embedded sensing, with an emphasis on reading environmental sound data and separating meaningful applause from background noise. It is a strong example of applied signal processing in a human-interaction context.</p><p><a href='/files/Applause%20Meter.pdf' target='_blank' rel='noopener noreferrer'>Read the full report (PDF)</a></p>",
+            "link": "/files/Applause%20Meter.pdf",
+            "client_name":"",
+            "client_company":"",
+            "client_feedback":"",
+            "schema":"project",
+            "dateString":"2024",
+            "timestamp":{},
+            "_id":"applause-meter",
+            "category":"Signal Processing",
+            "opts":null,
+            "preview":"",
+            "client":"",
+            "dateRange":"2024"
         }
     ]
 }

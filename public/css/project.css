@@ -29,3 +29,26 @@ li {
     left: 0;
     list-style-type: none;
 }
+
+.pdf-viewer-wrapper {
+    margin-top: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #f8f9fa;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.pdf-viewer {
+    width: 100%;
+    min-height: 900px;
+    max-height: 100vh;
+    border: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .pdf-viewer {
+        min-height: 650px;
+    }
+}

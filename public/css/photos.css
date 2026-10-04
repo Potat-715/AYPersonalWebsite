@@ -1,3 +1,44 @@
+.photo-section {
+	margin: 2rem 0 3rem;
+}
+
+.photo-section-title {
+	font-size: 1.75rem;
+	font-weight: 600;
+	margin: 0 0 1rem;
+	padding: 0 0.5rem;
+}
+
+.photo-section-empty {
+	margin: 0;
+	padding: 0 0.5rem 1rem;
+	color: #6c757d;
+	font-style: italic;
+}
+
+.photo-gallery {
+	column-count: 3;
+	column-gap: 0.7rem;
+	padding: 0 0.5rem;
+}
+
+.photo-thumb {
+	display: block;
+	width: 100%;
+	margin: 0 0 0.7rem;
+	border-radius: 7px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	break-inside: avoid;
+	cursor: pointer;
+	box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.photo-thumb:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.09);
+}
+
 /* Ensure modal image never overflows the viewport; leave comfortable margins */
 #photoModalImg {
 	display: block;
@@ -13,8 +54,25 @@
 	margin: 1.5rem auto;
 }
 
-/* If you want tighter margins on small screens */
+@media (max-width: 1200px) {
+	.photo-gallery {
+		column-count: 3;
+	}
+}
+
+@media (max-width: 768px) {
+	.photo-gallery {
+		column-count: 2;
+	}
+}
+
 @media (max-width: 576px) {
+	.photo-gallery {
+		column-count: 1;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
 	#photoModalImg {
 		max-width: calc(100vw - 24px);
 		max-height: calc(100vh - 96px);

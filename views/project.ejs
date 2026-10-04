@@ -12,6 +12,14 @@
         <h1><%= name %></h1>
         <p class="text-muted"><%= category %> | <%= dateRange %></p>
         <div class="markdown-body"><%- description %></div>
+
+        <% if (typeof link !== 'undefined' && link && /\.pdf($|[?#])/i.test(link)) { %>
+            <div class="pdf-viewer-wrapper">
+                <object data="<%= link %>" type="application/pdf" class="pdf-viewer">
+                    <p>Unable to display the PDF in the browser. <a href="<%= link %>" target="_blank" rel="noopener noreferrer">Open the report in a new tab</a>.</p>
+                </object>
+            </div>
+        <% } %>
     </main>
     <%- include('partials/footer.ejs') %>
     <%- include('partials/scripts.ejs') %>

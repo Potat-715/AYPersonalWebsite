@@ -3,6 +3,7 @@
 <head>
     <title>Andy Yang - Photos</title>
     <meta name="description" content="My Portfolio" />
+    <base href="/">
 
     <%- include('partials/head.ejs') %>
     <link href="css/main.css" rel="stylesheet">
@@ -11,33 +12,22 @@
 <body>
     <%- include('partials/navbar.ejs') %>
     <div class="container-fluid">
-        <!-- Gallery -->
-        <div class="row g-2">
-            <div class="col-lg-4 mb-4">
-                    <% if (photos && photos.length) { %>
-                        <% photos.forEach(function(p, i){ if (i % 3 === 0) { %>
-                            <img src="<%= p.src %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>" class="w-100 shadow-1-strong mb-2 photo-thumb" alt="photo-<%= i %>" />
-                        <% } }); %>
+        <% if (photoSections && photoSections.length) { %>
+            <% photoSections.forEach(function(section){ %>
+                <div class="photo-section" id="<%= section.key %>">
+                    <h2 class="photo-section-title"><%= section.label %></h2>
+                    <% if (section.photos && section.photos.length) { %>
+                        <div class="photo-gallery">
+                            <% section.photos.forEach(function(p, i){ %>
+                                <img src="<%= p.src %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>" class="photo-thumb" alt="<%= section.key %>-photo-<%= i %>" />
+                            <% }); %>
+                        </div>
+                    <% } else { %>
+                        <p class="photo-section-empty">No photos yet.</p>
                     <% } %>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                    <% if (photos && photos.length) { %>
-                        <% photos.forEach(function(p, i){ if (i % 3 === 1) { %>
-                            <img src="<%= p.src %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>" class="w-100 shadow-1-strong mb-2 photo-thumb" alt="photo-<%= i %>" />
-                        <% } }); %>
-                    <% } %>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                    <% if (photos && photos.length) { %>
-                        <% photos.forEach(function(p, i){ if (i % 3 === 2) { %>
-                            <img src="<%= p.src %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>" class="w-100 shadow-1-strong mb-2 photo-thumb" alt="photo-<%= i %>" />
-                        <% } }); %>
-                    <% } %>
-            </div>
-        </div>
-        <!-- Gallery -->
+                </div>
+            <% }); %>
+        <% } %>
 
         <!-- Photo Modal -->
         <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-hidden="true">
