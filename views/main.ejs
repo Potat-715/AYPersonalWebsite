@@ -34,7 +34,7 @@
             <div class="row mt-5" align="center" data-aos="fade-up" data-aos-duration="1000">
                 <% projects.forEach(function(item){ %>
                     <div class="col-lg-4 mb-4">
-                        <a href="project?slug=<%= item.slug %>" style="text-decoration: none">
+                        <a href="<%= typeof staticSite !== 'undefined' && staticSite ? `${item.slug}.html` : `project?slug=${item.slug}` %>" style="text-decoration: none">
                             <div class="project" style="background-image:url(<%= item.image %>)">
                                 <div class="project-info-wrapper">
                                     <div class="project-info">
