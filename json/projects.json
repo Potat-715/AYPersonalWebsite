@@ -3,8 +3,8 @@
         {
             "name": "Applause Meter",
             "slug": "applause-meter",
-            "image": "/images/logo.png",
-            "description": "<p>The Applause Meter is a real-time audio monitoring project designed to detect and quantify audience enthusiasm. It uses signal processing and threshold-based analysis to interpret clapping patterns and convert them into a measurable response metric.</p><p>This project focused on practical electronics and embedded sensing, with an emphasis on reading environmental sound data and separating meaningful applause from background noise. It is a strong example of applied signal processing in a human-interaction context.</p><p><a href='/files/Applause%20Meter.pdf' target='_blank' rel='noopener noreferrer'>Read the full report (PDF)</a></p>",
+            "image": "/images/Thumbnail%20Photos/Applause.png",
+            "description": "<p>The Applause Meter is an embedded audio-sensing system that captures environmental sound and analyzes signal intensity to estimate audience engagement in real time. The project combines microphone-based sensing, signal processing, and threshold-based classification to distinguish applause from ambient background noise.</p><p>Designed as an applied engineering solution, the system converts raw acoustic input into a measurable response metric through a practical sensing and analysis pipeline. This project demonstrates hands-on experience with embedded electronics, real-time data interpretation, and designing reliable human-interaction systems.</p><p><a href='/files/Applause%20Meter.pdf' target='_blank' rel='noopener noreferrer'>Read the full report (PDF)</a></p>",
             "link": "/files/Applause%20Meter.pdf",
             "client_name":"",
             "client_company":"",
@@ -20,10 +20,10 @@
             "dateRange":"2025"
         },
         {
-            "name": "LC-3 Assembly Labs",
+            "name": "LC3 Programs",
             "slug": "lc3-assembly-labs",
-            "image": "/images/logo.png",
-            "description": "<p>A collection of LC-3 assembly programming labs focused on rendering a game map, tracking played columns, validating user input, and updating the visibility map.</p><p><a href='/files/lab12.asm' target='_blank' rel='noopener noreferrer'>View Lab 12 assembly source</a><br><a href='/files/lab13%281%29.asm' target='_blank' rel='noopener noreferrer'>View Lab 13 assembly source</a></p>",
+            "image": "/images/Thumbnail%20Photos/LC3.png",
+            "description": "<h3>Stack Calculator</h3><p>An LC-3 assembly program for evaluating expressions with a stack-based calculator.</p><p><a href='/files/StackCalculator.asm' target='_blank' rel='noopener noreferrer'>View Stack Calculator assembly source</a></p><h3>Binary to Hex Converter</h3><p>An LC-3 assembly program for converting binary values into hexadecimal representation.</p><p><a href='/files/Binary2HexConverter.asm' target='_blank' rel='noopener noreferrer'>View Binary to Hex Converter assembly source</a></p><h3>LC3 Game</h3><p>An LC-3 assembly game project focused on rendering a game map, tracking played columns, validating user input, and updating the visibility map.</p><p><a href='/files/lab12.asm' target='_blank' rel='noopener noreferrer'>View Lab 12 assembly source</a><br><a href='/files/lab13%281%29.asm' target='_blank' rel='noopener noreferrer'>View Lab 13 assembly source</a></p>",
             "link": "/files/lab12.asm",
             "client_name":"",
             "client_company":"",
@@ -41,7 +41,7 @@
         {
             "name": "Watt's Up Sun?",
             "slug": "Watt's-Up-Sun?",
-            "image": "/images/logo.png",
+            "image": "/images/Thumbnail%20Photos/watttsupsun.png",
             "description": "<p>A team journal documenting project progress, collaboration, and development work.</p><p><a href='/files/Team%20Journal-1.pdf' target='_blank' rel='noopener noreferrer'>Read the team journal (PDF)</a></p>",
             "link": "/files/Team%20Journal-1.pdf",
             "client_name":"",
