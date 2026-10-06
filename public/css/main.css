@@ -43,7 +43,10 @@ h5 {
     position: absolute;
     transform: translate(0, 45vh);
     color:white !important;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(10, 15, 20, 0.7);
+    border-left: 3px solid var(--dark-accent);
+    padding: 1rem 1.5rem;
+    text-align: left;
 }
 
 .project {
@@ -53,6 +56,8 @@ h5 {
     text-decoration: none;
     background-size: auto 100%;
     transition: all 0.3s ease-in-out;
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
 
 .project:hover {
@@ -72,7 +77,7 @@ h5 {
     width: 100%;
     height: 100%;
     left:0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(10, 15, 20, 0.72);
     z-index: -1;
 
     transform: scaleX(0);
@@ -113,7 +118,7 @@ h5 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: royalblue;
+    background: var(--dark-accent);
     z-index: -1;
     
     transform: scaleX(0);
@@ -128,7 +133,7 @@ h5 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: royalblue;
+    background: var(--dark-accent);
     z-index: -1;
     
     transform: scaleX(0);

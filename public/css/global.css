@@ -1,3 +1,61 @@
+:root {
+    --dark-bg: #11161c;
+    --dark-surface: #19212a;
+    --dark-surface-raised: #222d38;
+    --dark-border: rgba(190, 210, 220, 0.16);
+    --dark-text: #e8eef2;
+    --dark-muted: #aab8c1;
+    --dark-accent: #70b7d6;
+}
+
+html,
+body {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body {
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+.navbar {
+    background: var(--dark-bg) !important;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark-text);
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: var(--dark-accent);
+}
+
+.fa-bars {
+    color: var(--dark-accent);
+}
+
+.dropdown-menu {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+.dropdown-item {
+    color: var(--dark-muted);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: var(--dark-text);
+    background: var(--dark-surface-raised);
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--dark-text);
+}
+
 h1, h2, h3, h5 {
     font-weight: 250;
 }
@@ -23,5 +81,14 @@ h5 {
 }
 
 hr {
-    border-top:2px solid royalblue;
+    border-top: 2px solid var(--dark-accent);
+}
+
+p,
+li {
+    color: var(--dark-muted);
+}
+
+a {
+    color: var(--dark-accent);
 }

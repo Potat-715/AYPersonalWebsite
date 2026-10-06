@@ -3,6 +3,9 @@
 <head>
     <title>Andy Yang - Photos</title>
     <meta name="description" content="My Portfolio" />
+    <% if (typeof staticSite === 'undefined' || !staticSite) { %>
+        <base href="/">
+    <% } %>
     <%- include('partials/head.ejs') %>
     <link href="css/main.css" rel="stylesheet">
 </head>

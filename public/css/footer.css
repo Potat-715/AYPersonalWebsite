@@ -1,8 +1,9 @@
 footer {
-    background-color: rgb(30, 114, 188);
+    background-color: #0b0f13;
+    border-top: 1px solid var(--dark-border);
     width: 100%;
 }
 
 .fa {
-    color: white;
+    color: var(--dark-accent);
 }
