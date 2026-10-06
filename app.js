@@ -46,6 +46,14 @@ function getPhotoSection(sectionKey, meetKey) {
 }
 
 function getSectionPhotos(photoDir, section) {
+    if (section.meets && !section.meetKey) {
+        return section.meets.flatMap((meet) => getSectionPhotos(photoDir, {
+            ...section,
+            ...meet,
+            folder: path.join(section.folder, meet.folder),
+            meetKey: meet.key
+        }));
+    }
     const folderPath = section.folder ? path.join(photoDir, section.folder) : photoDir;
     try {
         const files = fs.readdirSync(folderPath).filter(f => /\.(jpe?g|png|gif|webp|svg|avif)$/i.test(f));

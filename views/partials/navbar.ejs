@@ -9,18 +9,18 @@
         <% header_nav.forEach(function(item){ %>
           <% if (item.text === 'Photos') { %>
             <li class="nav-item dropdown">
-              <a class="nav-link nav-fancy-link dropdown-toggle" href="/photos" id="photosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link nav-fancy-link dropdown-toggle" href="<%= typeof staticSite !== 'undefined' && staticSite ? 'photos.html' : '/photos' %>" id="photosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Photos
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="photosDropdown">
-                <a class="dropdown-item" href="/photos/personal-work">Personal Work</a>
+                <a class="dropdown-item" href="<%= typeof staticSite !== 'undefined' && staticSite ? 'photos.html' : '/photos/personal-work' %>">Personal Work</a>
                 <div class="dropdown-submenu">
                   <a class="dropdown-item dropdown-toggle" href="<%= typeof staticSite !== 'undefined' && staticSite ? 'photos-illini-swim-club.html' : '/photos/illini-swim-club' %>">Illini Swim Club</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="<%= typeof staticSite !== 'undefined' && staticSite ? 'photos-illini-swim-club-mizzou-show-your-strips-2026.html' : '/photos/illini-swim-club/mizzou-show-your-strips-2026' %>">Mizzou Show Your Strips 2026</a>
                   </div>
                 </div>
-                <a class="dropdown-item" href="/photos/illini-solar-car">Illini Solar Car</a>
+                <a class="dropdown-item" href="<%= typeof staticSite !== 'undefined' && staticSite ? 'photos-illini-solar-car.html' : '/photos/illini-solar-car' %>">Illini Solar Car</a>
               </div>
             </li>
           <% } else { %>

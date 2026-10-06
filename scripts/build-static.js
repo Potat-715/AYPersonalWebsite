@@ -60,6 +60,14 @@ function getPhotosBySection() {
     ];
 
     const readSectionPhotos = (section) => {
+        if (section.meets && !section.meetKey) {
+            return section.meets.flatMap((meet) => readSectionPhotos({
+                ...section,
+                ...meet,
+                folder: path.join(section.folder, meet.folder),
+                meetKey: meet.key
+            }));
+        }
         const sectionDir = section.folder ? path.join(photoDir, section.folder) : photoDir;
         try {
             const files = fs.readdirSync(sectionDir)
@@ -147,7 +155,7 @@ fs.writeFileSync(path.join(outputRoot, 'index.html'), render('main', data));
 fs.writeFileSync(path.join(outputRoot, 'resume.html'), render('resume', data));
 
 photoSections.forEach((section) => {
-    const sectionPhotos = getPhotosBySection().find((item) => item.key === section.key)?.photos || [];
+    const sectionPhotos = prepareData(getPhotosBySection().find((item) => item.key === section.key)?.photos || []);
     const outputName = section.key === 'personal-work' ? 'photos.html' : `photos-${section.key}.html`;
     fs.writeFileSync(path.join(outputRoot, outputName), render('photos', {
         ...data,
@@ -158,7 +166,7 @@ photoSections.forEach((section) => {
         const meetData = getPhotosBySection().find((item) => item.meetKey === meet.key);
         fs.writeFileSync(path.join(outputRoot, `photos-${section.key}-${meet.key}.html`), render('photos', {
             ...data,
-            photoSections: [{ ...meetData, photos: meetData?.photos || [] }]
+            photoSections: [{ ...meetData, photos: prepareData(meetData?.photos || []) }]
         }));
     });
 });
