@@ -10,7 +10,7 @@
     <%- include('partials/navbar.ejs') %>
     <main class="container py-5">
         <h1><%= name %></h1>
-        <p class="text-muted"><%= category %> | <%= dateRange %></p>
+        <p class="project-meta"><%= category %> | <%= dateRange %></p>
         <div class="markdown-body"><%- description %></div>
 
         <% if (typeof link !== 'undefined' && link && /\.pdf($|[?#])/i.test(link)) { %>

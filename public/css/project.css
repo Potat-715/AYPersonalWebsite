@@ -20,6 +20,10 @@ p {
     line-height: 30px;
 }
 
+.project-meta {
+    color: var(--dark-text);
+}
+
 ul {
     list-style-type: none;
 }
