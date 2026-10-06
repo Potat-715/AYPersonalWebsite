@@ -19,7 +19,13 @@
                     <% if (section.photos && section.photos.length) { %>
                         <div class="photo-gallery">
                             <% section.photos.forEach(function(p, i){ %>
-                                <img src="<%= p.src %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>" class="photo-thumb" alt="<%= section.key %>-photo-<%= i %>" />
+                                <div class="photo-thumb-frame<%= p.beforeSrc ? ' has-before' : '' %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>">
+                                    <img src="<%= p.src %>" class="photo-thumb photo-after" alt="<%= section.key %>-photo-<%= i %>" />
+                                    <% if (p.beforeSrc) { %>
+                                        <img src="<%= p.beforeSrc %>" class="photo-thumb photo-before" alt="" aria-hidden="true" />
+                                        <span class="before-label">Before</span>
+                                    <% } %>
+                                </div>
                             <% }); %>
                         </div>
                     <% } else { %>
@@ -49,8 +55,8 @@
     <script>
         $(function(){
             // (No client-side shuffle — images are rendered server-side)
-            $(document).on('click', '.photo-thumb', function(){
-                var src = $(this).data('fullsrc') || $(this).attr('src');
+            $(document).on('click', '.photo-thumb-frame', function(){
+                var src = $(this).data('fullsrc');
                 var settings = $(this).data('settings') || '';
                 $('#photoModalImg').attr('src', src);
                 $('#photoCaption').text(settings);

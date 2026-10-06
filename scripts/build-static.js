@@ -62,8 +62,13 @@ function getPhotosBySection() {
     const readSectionPhotos = (section) => {
         const sectionDir = section.folder ? path.join(photoDir, section.folder) : photoDir;
         try {
-            return fs.readdirSync(sectionDir)
-                .filter((file) => /\.(jpe?g|png|gif|webp|svg)$/i.test(file))
+            const files = fs.readdirSync(sectionDir)
+                .filter((file) => /\.(jpe?g|png|gif|webp|svg|avif)$/i.test(file));
+            const beforeFolder = path.join(sectionDir, 'BEFORE PHOTOs');
+            const beforeFiles = new Set(fs.existsSync(beforeFolder)
+                ? fs.readdirSync(beforeFolder).filter((file) => /\.(jpe?g|png|gif|webp|svg|avif)$/i.test(file))
+                : []);
+            return files
                 .map((file) => {
                     let settings = '';
                     try {
@@ -81,7 +86,16 @@ function getPhotosBySection() {
                     const relativeDir = section.folder
                         ? `/images/photos/${section.folder.split(path.sep).map(encodeURIComponent).join('/')}`
                         : '/images/photos';
-                    return { src: `${relativeDir}/${encodeURIComponent(file)}`, settings };
+                    const stem = path.parse(file).name;
+                    const originalStem = stem.replace(/[-_]\d+$/, '');
+                    const beforeName = [...beforeFiles].find(name => {
+                        const beforeStem = path.parse(name).name;
+                        return beforeStem === stem || beforeStem === originalStem;
+                    });
+                    const beforeSrc = beforeName
+                        ? `${relativeDir}/BEFORE%20PHOTOs/${encodeURIComponent(beforeName)}`
+                        : '';
+                    return { src: `${relativeDir}/${encodeURIComponent(file)}`, beforeSrc, settings };
                 });
         } catch (error) {
             return [];

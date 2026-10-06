@@ -25,18 +25,56 @@
 .photo-thumb {
 	display: block;
 	width: 100%;
-	margin: 0 0 0.7rem;
 	border-radius: 7px;
 	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+}
+
+.photo-thumb-frame {
+	position: relative;
+	display: block;
+	margin: 0 0 0.7rem;
 	break-inside: avoid;
 	cursor: pointer;
-	box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+	line-height: 0;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.photo-thumb:hover {
+.photo-thumb-frame:hover {
 	transform: translateY(-1px);
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.09);
+}
+
+.photo-before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.photo-thumb-frame:hover .photo-before {
+	opacity: 1;
+}
+
+.before-label {
+	position: absolute;
+	right: 0.6rem;
+	bottom: 0.6rem;
+	padding: 0.25rem 0.45rem;
+	border-radius: 3px;
+	background: rgba(0, 0, 0, 0.65);
+	color: #fff;
+	font-size: 0.75rem;
+	line-height: 1;
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.photo-thumb-frame:hover .before-label {
+	opacity: 1;
 }
 
 /* Ensure modal image never overflows the viewport; leave comfortable margins */

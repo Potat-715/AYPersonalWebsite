@@ -17,7 +17,7 @@
             "opts":null,
             "preview":"",
             "client":"",
-            "dateRange":"2024"
+            "dateRange":"2025"
         },
         {
             "name": "LC-3 Assembly Labs",
@@ -39,8 +39,8 @@
             "dateRange":"2026"
         },
         {
-            "name": "Team Journal",
-            "slug": "team-journal",
+            "name": "Watt's Up Sun?",
+            "slug": "Watt's-Up-Sun?",
             "image": "/images/logo.png",
             "description": "<p>A team journal documenting project progress, collaboration, and development work.</p><p><a href='/files/Team%20Journal-1.pdf' target='_blank' rel='noopener noreferrer'>Read the team journal (PDF)</a></p>",
             "link": "/files/Team%20Journal-1.pdf",
