@@ -120,7 +120,7 @@ function getPhotosBySection() {
             meetKey: meet.key,
             parentKey: section.key,
             parentLabel: section.label,
-            photos: readSectionPhotos({ ...section, ...meet, folder: path.join(section.folder, meet.folder) })
+            photos: readSectionPhotos({ ...section, ...meet, folder: path.join(section.folder, meet.folder), meetKey: meet.key })
         }))
     ]);
 }
