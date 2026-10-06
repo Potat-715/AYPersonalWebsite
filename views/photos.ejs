@@ -21,9 +21,9 @@
                         <div class="photo-gallery">
                             <% section.photos.forEach(function(p, i){ %>
                                 <div class="photo-thumb-frame<%= p.beforeSrc ? ' has-before' : '' %>" data-fullsrc="<%= p.src %>" data-settings="<%= p.settings %>">
-                                    <img src="<%= p.src %>" class="photo-thumb photo-after" alt="<%= section.key %>-photo-<%= i %>" />
+                                    <img src="<%= p.src %>" class="photo-thumb photo-after" alt="<%= section.key %>-photo-<%= i %>" loading="<%= i === 0 ? 'eager' : 'lazy' %>" decoding="async" />
                                     <% if (p.beforeSrc) { %>
-                                        <img src="<%= p.beforeSrc %>" class="photo-thumb photo-before" alt="" aria-hidden="true" />
+                                        <img src="<%= p.beforeSrc %>" class="photo-thumb photo-before" alt="" aria-hidden="true" loading="lazy" decoding="async" />
                                         <span class="before-label">Before</span>
                                     <% } %>
                                 </div>
